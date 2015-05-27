@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  # This is for show index only to authenticated users.
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @movies = Movie.all
@@ -9,14 +11,14 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.build
   end
 
   def edit
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.build(movie_params)
 
     respond_to do |format|
       if @movie.save
