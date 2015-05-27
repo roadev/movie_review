@@ -1,28 +1,20 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
-  # GET /movies
-  # GET /movies.json
   def index
     @movies = Movie.all
   end
 
-  # GET /movies/1
-  # GET /movies/1.json
   def show
   end
 
-  # GET /movies/new
   def new
     @movie = Movie.new
   end
 
-  # GET /movies/1/edit
   def edit
   end
 
-  # POST /movies
-  # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
 
